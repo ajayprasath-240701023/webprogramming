@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   TradePilot — Global Styles
+   ============================================= */
+
+:root {
+  --tp-bg: #080B12;
+  --tp-sidebar: #0D111B;
+  --tp-card: #111827;
+  --tp-border: #253044;
+  --tp-accent: #3B82F6;
+  --tp-positive: #10B981;
+  --tp-negative: #EF4444;
+  --tp-text: #F9FAFB;
+  --tp-text-secondary: #9CA3AF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+body {
+  background-color: var(--tp-bg);
+  color: var(--tp-text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--tp-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--tp-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4a62;
+}
+
+/* Tabular numerals for all financial data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+/* Card base */
+.tp-card {
+  @apply bg-tp-card border border-tp-border rounded-card shadow-card transition-all duration-200;
+}
+.tp-card:hover {
+  @apply border-tp-border-light shadow-card-hover;
+}
+
+/* Button variants */
+.tp-btn {
+  @apply px-4 py-2 rounded-lg font-medium text-sm transition-all duration-150 
+         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-tp-bg
+         disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.tp-btn-primary {
+  @apply tp-btn bg-tp-accent text-white hover:bg-tp-accent-hover focus:ring-tp-accent;
+}
+.tp-btn-success {
+  @apply tp-btn bg-tp-positive text-white hover:bg-emerald-600 focus:ring-tp-positive;
+}
+.tp-btn-danger {
+  @apply tp-btn bg-tp-negative text-white hover:bg-red-600 focus:ring-tp-negative;
+}
+.tp-btn-ghost {
+  @apply tp-btn bg-transparent text-tp-text-secondary hover:bg-tp-card hover:text-tp-text;
+}
+.tp-btn-outline {
+  @apply tp-btn border border-tp-border bg-transparent text-tp-text-secondary 
+         hover:bg-tp-card hover:text-tp-text hover:border-tp-border-light;
+}
+
+/* Input */
+.tp-input {
+  @apply w-full px-3 py-2.5 bg-tp-bg border border-tp-border rounded-lg text-tp-text text-sm
+         placeholder:text-tp-text-muted
+         focus:outline-none focus:ring-2 focus:ring-tp-accent/50 focus:border-tp-accent
+         transition-all duration-150;
+}
+.tp-input-sm {
+  @apply tp-input py-1.5 text-xs;
+}
+
+/* Select */
+.tp-select {
+  @apply tp-input appearance-none cursor-pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* Badge */
+.tp-badge {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+}
+.tp-badge-success {
+  @apply tp-badge bg-tp-positive-bg text-tp-positive;
+}
+.tp-badge-danger {
+  @apply tp-badge bg-tp-negative-bg text-tp-negative;
+}
+.tp-badge-info {
+  @apply tp-badge bg-blue-500/10 text-tp-accent;
+}
+.tp-badge-warning {
+  @apply tp-badge bg-tp-amber-bg text-tp-amber;
+}
+
+/* Table */
+.tp-table {
+  @apply w-full text-sm;
+}
+.tp-table thead th {
+  @apply px-4 py-3 text-left text-xs font-semibold text-tp-text-muted uppercase tracking-wider 
+         bg-tp-bg/50 border-b border-tp-border;
+}
+.tp-table tbody td {
+  @apply px-4 py-3 border-b border-tp-border/50 tabular-nums;
+}
+.tp-table tbody tr {
+  @apply transition-colors duration-100 hover:bg-tp-card-hover cursor-pointer;
+}
+
+/* Skeleton loading */
+.tp-skeleton {
+  @apply animate-pulse bg-tp-border/50 rounded;
+}
+
+/* Modal / Dialog overlay */
+.tp-overlay {
+  @apply fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center;
+}
+.tp-dialog {
+  @apply bg-tp-card border border-tp-border rounded-2xl shadow-2xl max-w-lg w-full mx-4 
+         animate-slide-up overflow-hidden;
+}
+
+/* Sparkline container */
+.tp-sparkline {
+  @apply h-10 w-24 opacity-80;
+}
+
+/* Value color utilities */
+.text-positive { @apply text-tp-positive; }
+.text-negative { @apply text-tp-negative; }
+.bg-positive-subtle { @apply bg-tp-positive-bg; }
+.bg-negative-subtle { @apply bg-tp-negative-bg; }
